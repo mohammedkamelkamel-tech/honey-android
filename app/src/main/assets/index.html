@@ -1,0 +1,265 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>محطة العسل للطاقة النظيفة</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f3f7fc;color:#17324d;font-family:Arial,Tahoma,sans-serif}header{background:#0b5ca8;color:white;padding:12px 16px;display:flex;gap:12px;align-items:center}header img{width:58px;height:58px;object-fit:contain;background:#fff;border-radius:12px}.title{font-size:21px;font-weight:bold}header small{display:block;margin-top:4px}main{max-width:900px;margin:auto;padding:16px 14px 90px}.page{display:none}.page.active{display:block}h2{color:#075a9f}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card,.row{background:#fff;border-radius:16px;padding:15px;margin:10px 0;box-shadow:0 2px 12px #0000000d}.hero{background:#0b5ca8;color:#fff;border-radius:18px;padding:20px;text-align:center}.big{font-size:30px;font-weight:bold}.muted{color:#758595}.hero .muted{color:#e8f3ff}.rowline{display:flex;justify-content:space-between;gap:8px;padding:6px 0}.rowline b{color:#075a9f}button{border:0;border-radius:11px;padding:11px 14px;font-size:15px;margin:3px;cursor:pointer}.primary{background:#0b5ca8;color:#fff}.green{background:#159447;color:#fff}.danger{background:#c93030;color:#fff}.gray{background:#e8eef5;color:#17324d}input,select{width:100%;padding:11px;border:1px solid #ccd7e2;border-radius:10px;margin:4px 0 9px;font-size:15px}.actions{display:flex;flex-wrap:wrap;gap:4px}nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #ddd;display:flex;z-index:9}nav button{flex:1;background:white;color:#175783;font-size:12px}nav b{display:block;font-size:19px}.note{background:#fff5ce;padding:12px;border-radius:10px}.dangerText{color:#b52323;font-weight:bold}@media print{header,nav,.no-print{display:none!important}main{padding:0}.page{display:none!important}#read{display:block!important}.card{box-shadow:none}}@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+<style>
+.invoice-card{position:relative;overflow:hidden}
+.invoice-card .watermark,.receipt-card .watermark{position:absolute;left:50%;top:50%;
+transform:translate(-50%,-50%);width:240px;height:240px;object-fit:contain;opacity:.10;
+pointer-events:none;z-index:0}
+.invoice-card .invoice-content{position:relative;z-index:1}
+.invoice-logo{display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact;width:82px;height:82px;object-fit:contain;margin:0 auto 8px;opacity:.9}
+.backup-status{font-size:13px;margin-top:8px}
+.reminder-card{background:#eef7ff}
+</style>
+<style id="thermal-print-style">
+@page { size: 80mm auto; margin: 2mm; }
+@media print {
+  html, body { width: 80mm !important; margin: 0 !important; padding: 0 !important; }
+  body { font-size: 12px !important; background: #fff !important; }
+  .no-print, nav, header, .sidebar, button { display:none !important; }
+  .card, .invoice-card, .receipt-card {
+    width: 72mm !important;
+    max-width: 72mm !important;
+    margin: 0 auto !important;
+    padding: 3mm !important;
+    box-sizing: border-box !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background:#fff !important;
+    overflow:hidden !important;
+  }
+  .invoice-card .watermark, .receipt-card .watermark {
+    display:block !important;
+    position:absolute !important;
+    left:50% !important;
+    top:50% !important;
+    transform:translate(-50%,-50%) !important;
+    width:48mm !important;
+    height:48mm !important;
+    opacity:.10 !important;
+    object-fit:contain !important;
+    z-index:0 !important;
+  }
+  .invoice-content { position:relative !important; z-index:1 !important; }
+  .rowline { display:flex !important; justify-content:space-between !important; gap:4px !important; }
+  h2 { font-size:17px !important; margin:2mm 0 !important; }
+  h3 { font-size:14px !important; margin:1.5mm 0 !important; }
+}
+.status-overdue{background:#ffe5e5!important;border:1px solid #ef4444!important;color:#991b1b!important}.status-partial{background:#fff0d6!important;border:1px solid #f59e0b!important;color:#92400e!important}.status-paid{background:#e7f8ec!important;border:1px solid #22c55e!important;color:#166534!important}.amount-overdue{color:#b91c1c!important;font-weight:800}.amount-paid{color:#15803d!important;font-weight:800}.amount-credit{color:#1d4ed8!important;font-weight:800}.status-badge{display:inline-block;padding:4px 9px;border-radius:999px;font-weight:bold;font-size:13px}.invoice-status{margin:8px 0}.invoice-status.status-overdue{padding:8px}.invoice-status.status-partial{padding:8px}.invoice-status.status-paid{padding:8px}</style>
+<style id="invoice-receipt-design">
+.print-sheet{position:relative;overflow:hidden;background:#fff;border-radius:18px;border:1px solid #d9e2ec;box-shadow:0 4px 20px #00000012;max-width:760px;margin:0 auto 20px}.print-sheet .invoice-content{position:relative;z-index:2;padding:22px}.print-sheet .invoice-logo{display:block;width:78px;height:78px;object-fit:contain;margin:0 auto 10px}.doc-head{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:2px solid #0b5ca8;padding-bottom:12px}.doc-head h2{margin:0;color:#0b5ca8;font-size:21px}.doc-subtitle{color:#718096;margin-top:4px;font-size:13px}.doc-number{font-weight:800;color:#fff;background:#0b5ca8;border-radius:10px;padding:9px 12px;white-space:nowrap}.doc-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 0}.doc-meta>div{background:#f5f8fb;border:1px solid #e3eaf1;border-radius:10px;padding:9px}.doc-meta span{display:block;color:#718096;font-size:12px;margin-bottom:3px}.doc-table{position:relative;z-index:2;width:100%;border-collapse:collapse;margin:12px 0}.doc-table th,.doc-table td{padding:9px;border-bottom:1px solid #e5eaf0;text-align:right}.doc-table th{background:#edf5fb;color:#0b5ca8}.doc-table tr:last-child td{border-bottom:0}.totals{position:relative;z-index:2;border-top:2px solid #dce5ee;margin-top:14px;padding-top:8px}.totals>div{display:flex;justify-content:space-between;padding:7px 0}.totals>div:first-child{font-size:18px}.totals b{color:#0b5ca8}.totals .paid{color:#159447}.totals .due{color:#b42318}.receipt-total{position:relative;z-index:2;text-align:center;background:#edf9f1;border:1px solid #ccebd5;border-radius:14px;padding:15px;margin:14px 0}.receipt-total span{display:block;color:#5f7667}.receipt-total strong{display:block;color:#159447;font-size:27px;margin-top:4px}.payment-status{position:relative;z-index:2;text-align:center;padding:10px;border-radius:10px;background:#fff3df;color:#9a5a00;font-weight:bold}.payment-status.ok{background:#e9f8ee;color:#16733b}.watermark-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;pointer-events:none}.watermark-wrap .watermark{width:260px;height:260px;object-fit:contain;opacity:.075}.doc-footer{text-align:center;color:#718096;font-size:12px;margin-top:18px;padding-top:10px;border-top:1px dashed #ccd7e2}.receipt-card .doc-head{border-bottom-color:#159447}.receipt-card .doc-number{background:#159447}
+@media print{body{background:#fff!important}.print-sheet{box-shadow:none;border:0;border-radius:0;max-width:none;margin:0}.print-sheet .invoice-content{padding:4mm}.doc-head h2{font-size:17px}.print-sheet .invoice-logo{width:22mm;height:22mm}.watermark-wrap .watermark{width:48mm;height:48mm;opacity:.075}.doc-meta{gap:2mm;margin:3mm 0}.doc-meta>div{padding:2mm}.doc-table th,.doc-table td{padding:2mm}.totals>div{padding:1.5mm}.doc-footer{margin-top:3mm}.actions{display:none!important}}
+</style></head><body>
+<header><img src="file:///android_res/drawable/logo.png" onerror="this.style.display='none'"><div><div class="title">محطة العسل</div><small>للطاقة النظيفة — نظام الفواتير</small></div></header><main>
+<section id="home" class="page active"><h2>الرئيسية</h2><div class="hero"><div class="muted">السعر الافتراضي للكيلو</div><div class="big" id="homePrice">170 ريال</div></div><div class="grid"><div class="card" onclick="go('subs')">👥<b>المشتركون</b><div id="subCount">0</div></div><div class="card" onclick="go('invoices')">🧾<b>الفواتير</b><div id="invCount">0</div></div><div class="card" onclick="go('receipts')">🧾<b>الإيصالات</b><div id="recCount">0</div></div><div class="card" onclick="go('reports')">📊<b>التقارير</b><div id="due">0 ريال</div></div></div><div class="card"><div class="muted">إجمالي المتأخرات</div><div class="big" id="homeDue">0</div></div></section>
+<section id="subs" class="page"><h2>المشتركون</h2><button class="primary" onclick="newSub()">➕ إضافة مشترك</button><input id="sq" placeholder="بحث بالاسم أو العداد أو الهاتف" oninput="renderSubs()"><div id="subList"></div></section>
+<section id="subInvoices" class="page"><h2>🧾 فواتير المشترك</h2><div id="subInvHead" class="card"></div><input id="siq" placeholder="بحث في فواتير هذا المشترك" oninput="renderSubInvoices()"><div id="subInvList"></div><button class="gray" onclick="go('subs')">↩ العودة للمشتركين</button></section><section id="subForm" class="page"><h2 id="sfTitle">إضافة مشترك</h2><input type="hidden" id="sid"><label>الاسم</label><input id="sn"><label>رقم العداد</label><input id="sm"><label>الهاتف</label><input id="sp"><label>سعر الكيلو لهذا المشترك</label><input id="sprice" type="number"><label>القراءة السابقة</label><input id="spre" type="number"><div class="actions"><button class="primary" onclick="saveSub()">حفظ</button><button class="gray" onclick="go('subs')">إلغاء</button></div></section>
+<section id="invoiceForm" class="page"><h2>إنشاء فاتورة</h2><label>المشترك</label><select id="isub" onchange="fillInv()"></select><div class="card"><div class="rowline"><span>القراءة السابقة</span><b id="ivprev">0</b></div><div class="rowline"><span>السعر</span><b id="ivprice">0</b></div><div class="rowline"><span>المتأخرات</span><b id="ivdue">0</b></div><div class="rowline"><span>الرصيد الدائن</span><b id="ivcredit">0</b></div></div><label>القراءة الحالية</label><input id="icurr" type="number" oninput="calcInv()"><label>الخصم (ريال)</label><input id="idis" type="number" value="0" oninput="calcInv()"><label>المدفوع الآن</label><input id="ipaid" type="number" value="0" oninput="calcInv()"><div class="card"><div class="rowline"><span>الاستهلاك</span><b id="icons">0</b></div><div class="rowline"><span>قيمة الاستهلاك</span><b id="ienergy">0</b></div><div class="rowline"><span>الإجمالي</span><b id="itotal">0</b></div><div class="rowline"><span>الرصيد المستخدم</span><b id="icuse">0</b></div></div><div class="note" id="ires">المتبقي: 0 ريال</div><button class="primary" onclick="saveInv()">حفظ الفاتورة</button></section>
+<section id="invoices" class="page"><h2>الفواتير</h2><input id="iq" placeholder="بحث" oninput="renderInvs()"><div id="invList"></div></section>
+<section id="receipts" class="page"><h2>الإيصالات</h2><button class="green" onclick="newReceipt()">➕ تسجيل دفعة</button><input id="rq" placeholder="بحث" oninput="renderRecs()"><div id="recList"></div></section>
+<section id="reports" class="page"><h2>التقارير</h2><div class="card"><div class="rowline">إجمالي الفواتير <b id="rtInv">0</b></div><div class="rowline">إجمالي المدفوع <b id="rtPaid">0</b></div><div class="rowline">المتأخرات <b id="rtDue">0</b></div><div class="rowline">الأرصدة الدائنة <b id="rtCredit">0</b></div></div></section>
+<section id="settings" class="page"><h2>الإعدادات</h2><div class="card"><label>اسم المحطة</label><input id="stName"><label>السعر الافتراضي</label><input id="stPrice" type="number"><label>بداية أرقام الفواتير</label><input id="stStart" type="number"><label>عدد أيام الاستحقاق بعد إصدار الفاتورة</label><input id="stDueDays" type="number" min="0" value="15"><button class="primary" onclick="saveSettings()">حفظ</button></div>
+<div class="card"><h3>إعدادات الطابعة الحرارية</h3>
+<label>مقاس الورق</label>
+<select id="paperSize" onchange="setPaperSize(this.value)">
+<option value="80">80 مم</option>
+<option value="58">58 مم</option>
+</select>
+<div class="backup-status muted">سيتم ضبط صفحة الطباعة تلقائيًا على المقاس المختار.</div>
+</div>
+<div class="card"><h3>شعار الفاتورة والإيصال</h3>
+<label>رفع صورة الشعار</label>
+<input id="logoUpload" type="file" accept="image/*" onchange="uploadLogo(event)">
+<div class="actions"><button class="gray" onclick="removeLogo()">حذف الشعار</button></div>
+<div class="backup-status muted" id="logoStatus">يمكن رفع صورة الشعار لتظهر شفافة في منتصف الفاتورة والإيصال.</div>
+</div>
+<div class="card"><h3>النسخ الاحتياطي التلقائي</h3>
+<label>حفظ النسخة الاحتياطية</label>
+<input id="backupPath" value="حفظ تلقائي داخل الجهاز" readonly>
+<div class="actions"><button class="green" onclick="backup(false)">💾 أخذ نسخة الآن</button><button class="gray" onclick="downloadBackup()">⬇️ تنزيل نسخة</button></div>
+<div class="backup-status muted" id="backupStatus">لم يتم أخذ نسخة تلقائية بعد.</div>
+<p class="muted">في تطبيق Android يتم حفظ نسخة تلقائية يوميًا حتى لو لم تفتح التطبيق. كما يمكنك تنزيل نسخة JSON يدويًا.</p>
+</div>
+<div class="card reminder-card"><h3>🔔 تذكير القراءة الحالية</h3>
+<label>تاريخ القراءة القادمة</label><input id="readingDate" type="date">
+<label>وقت التنبيه</label><input id="readingTime" type="time" value="09:00">
+<button class="primary" onclick="saveReminder()">حفظ المنبه</button>
+<div class="backup-status muted" id="reminderStatus">لا يوجد منبه محفوظ.</div>
+</div>
+<div class="card"><h3>استعادة نسخة احتياطية</h3><button class="green" onclick="restore.click()">♻️ استعادة</button><input id="restore" type="file" accept=".json" hidden onchange="restoreDB(event)"><p class="muted">البيانات تحفظ محليًا، ويمكن استعادة نسخة JSON.</p></div></section>
+<section id="read" class="page"><div id="result"></div></section></main>
+<nav><button onclick="go('home')"><b>⌂</b>الرئيسية</button><button onclick="go('subs')"><b>👥</b>المشتركون</button><button onclick="go('invoices')"><b>🧾</b>الفواتير</button><button onclick="go('receipts')"><b>🧾</b>الإيصالات</button><button onclick="go('settings')"><b>⚙</b>الإعدادات</button></nav>
+<script>
+const K='honey_billing_v3';let db=JSON.parse(localStorage.getItem(K)||'null')||{settings:{name:'محطة العسل للطاقة النظيفة',price:170,start:1,nextInvoice:1,nextReceipt:1},subs:[],invoices:[],receipts:[]};
+const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString('ar-YE')+' ريال',esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])),sid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2);function save(){let data=JSON.stringify(db);localStorage.setItem(K,data);if(window.AndroidBridge){try{AndroidBridge.saveData(data)}catch(e){}}}function sub(id){return db.subs.find(x=>x.id===id)}
+let currentPage='home';
+function showPage(p){
+  const target=$(p);
+  if(!target)return;
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  target.classList.add('active');
+  currentPage=p;
+  render();
+  window.scrollTo(0,0);
+}
+function go(p){
+  if(!$(p))return;
+  if(currentPage===p)return;
+  history.pushState({page:p},'',`#${p}`);
+  showPage(p);
+}
+window.addEventListener('popstate',()=>{
+  const p=location.hash.replace(/^#/,'')||'home';
+  showPage($(p)?p:'home');
+});
+const initialPage=(location.hash||'#home').slice(1);
+history.replaceState({page:$(initialPage)?initialPage:'home'},'',`#${$(initialPage)?initialPage:'home'}`);
+currentPage=$(initialPage)?initialPage:'home';
+function render(){home();renderSubs();renderInvs();renderRecs();reports();fillSelect();if($('subInvoices')?.classList.contains('active'))renderSubInvoices();if($('settings').classList.contains('active'))loadSettings()}
+function home(){let d=db.subs.reduce((a,s)=>a+Number(s.arrears||0),0);$('homePrice').textContent=money(db.settings.price);$('subCount').textContent=db.subs.length;$('invCount').textContent=db.invoices.length;$('recCount').textContent=db.receipts.length;$('due').textContent=money(d);$('homeDue').textContent=money(d)}
+function newSub(){$('sid').value='';$('sn').value='';$('sm').value='';$('sp').value='';$('sprice').value=db.settings.price;$('spre').value=0;$('sfTitle').textContent='إضافة مشترك';go('subForm')}
+function editSub(i){let s=sub(i);$('sid').value=s.id;$('sn').value=s.name;$('sm').value=s.meter;$('sp').value=s.phone;$('sprice').value=s.price;$('spre').value=s.prev;$('sfTitle').textContent='تعديل المشترك';go('subForm')}
+function saveSub(){let i=$('sid').value,o={id:i||sid(),name:$('sn').value.trim(),meter:$('sm').value.trim(),phone:$('sp').value.trim(),price:Number($('sprice').value||db.settings.price),prev:Number($('spre').value||0),arrears:0,credit:0};if(!o.name||!o.meter)return alert('أدخل الاسم ورقم العداد');let old=sub(i);if(old){o.arrears=old.arrears;o.credit=old.credit;db.subs[db.subs.indexOf(old)]=o}else db.subs.push(o);save();go('subs')}
+function renderSubs(){let q=($('sq')?.value||'').toLowerCase(),a=db.subs.filter(s=>(s.name+' '+s.meter+' '+s.phone).toLowerCase().includes(q));$('subList').innerHTML=a.length?a.map(s=>`<div class="row"><b>${esc(s.name)}</b><div class="muted">العداد ${esc(s.meter)} — ${esc(s.phone)}</div><div class="rowline">السعر <b>${money(s.price)}</b></div><div class="rowline ${Number(s.arrears||0)>0?'status-overdue':''}">المتأخرات <b class="${Number(s.arrears||0)>0?'amount-overdue':''}">${money(s.arrears)}</b></div><div class="rowline ${Number(s.credit||0)>0?'status-paid':''}">الرصيد الدائن <b class="${Number(s.credit||0)>0?'amount-credit':''}">${money(s.credit)}</b></div><div class="invoice-status ${Number(s.arrears||0)>0?'status-overdue':'status-paid'}"><span class="status-badge">${Number(s.arrears||0)>0?'🔴 عليه متأخرات':'🟢 لا توجد متأخرات'}</span></div><div class="actions"><button class="primary" onclick="makeInv('${s.id}')">فاتورة</button><button class="green" onclick="receipt('${s.id}')">إيصال</button><button class="gray" onclick="showSubInvoices('${s.id}')">🧾 الفواتير</button><button class="primary" onclick="showStatement('${s.id}')">📄 كشف حساب</button><button class="gray" onclick="editSub('${s.id}')">تعديل</button></div></div>`).join(''):'<div class="card">لا يوجد مشتركون.</div>'}
+function showSubInvoices(id){let s=sub(id);if(!s)return;$('siq').value='';$('subInvoices').dataset.subId=id;$('subInvHead').innerHTML=`<h3>${esc(s.name)}</h3><div class="rowline"><span>رقم العداد</span><b>${esc(s.meter)}</b></div><div class="rowline"><span>الهاتف</span><b>${esc(s.phone)}</b></div><div class="rowline"><span>عدد الفواتير</span><b>${db.invoices.filter(i=>i.subId===id).length}</b></div><div class="actions"><button class="primary" onclick="makeInv('${id}')">➕ إنشاء فاتورة</button><button class="green" onclick="receipt('${id}')">💵 تسجيل دفعة</button><button class="primary" onclick="showStatement('${id}')">📄 كشف حساب</button></div>`;go('subInvoices')}
+function renderSubInvoices(){let page=$('subInvoices');if(!page)return;let id=page.dataset.subId;if(!id){$('subInvList').innerHTML='<div class="card">اختر مشتركًا لعرض فواتيره.</div>';return}let q=($('siq')?.value||'').toLowerCase();let a=db.invoices.filter(i=>i.subId===id&&(String(i.number)+' '+String(i.date)+' '+String(i.total)).toLowerCase().includes(q)).slice().reverse();$('subInvList').innerHTML=a.length?a.map(i=>`<div class="row"><b>🧾 فاتورة #${i.number}</b><div class="muted">${formatDateDMY(i.date)}</div><div class="rowline"><span>الاستهلاك</span><b>${i.cons} كيلو</b></div><div class="rowline"><span>الإجمالي</span><b>${money(i.total)}</b></div><div class="rowline"><span>المدفوع</span><b>${money(i.paid)}</b></div><div class="rowline"><span>المتبقي</span><b class="${i.remaining>0?'dangerText':''}">${money(i.remaining)}</b></div><div class="actions"><button class="primary" onclick="showInv(db.invoices.find(x=>x.number==${i.number}))">عرض</button><button class="green" onclick="printInv(${i.number})">🖨️ طباعة</button><button class="gray" onclick="waInv(${i.number})">واتساب</button></div></div>`).join(''):'<div class="card">لا توجد فواتير لهذا المشترك حتى الآن.</div>'}
+function statementHTML(id){let s=sub(id);if(!s)return '';let inv=db.invoices.filter(i=>i.subId===id).slice().sort((a,b)=>String(a.date).localeCompare(String(b.date))),rec=db.receipts.filter(r=>r.subId===id).slice().sort((a,b)=>String(a.date).localeCompare(String(b.date)));let rows=[...inv.map(i=>({date:i.date,type:'فاتورة',num:'#'+i.number,desc:`استهلاك ${i.cons} كيلو`,charge:Number(i.total||0),paid:Number(i.paid||0)})),...rec.map(r=>({date:r.date,type:'إيصال',num:'#'+r.number,desc:'دفعة',charge:0,paid:Number(r.paid||0)}))].sort((a,b)=>String(a.date).localeCompare(String(b.date)));let ti=inv.reduce((a,x)=>a+Number(x.total||0),0),tp=rec.reduce((a,x)=>a+Number(x.paid||0),0);return `<div class="card statement invoice-card"><div class="invoice-content"><h2>${esc(db.settings.name)}</h2><h3>📄 كشف حساب المشترك</h3><div class="rowline"><span>المشترك</span><b>${esc(s.name)}</b></div><div class="rowline"><span>رقم العداد</span><b>${esc(s.meter)}</b></div><div class="rowline"><span>الهاتف</span><b>${esc(s.phone)}</b></div><hr><table style="width:100%;border-collapse:collapse"><thead><tr><th>التاريخ</th><th>البيان</th><th>مدين</th><th>دائن</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${formatDateDMY(r.date)}</td><td>${r.type} ${r.num}<br>${r.desc}</td><td>${r.charge?money(r.charge):'-'}</td><td>${r.paid?money(r.paid):'-'}</td></tr>`).join('')}</tbody></table><hr><div class="rowline"><span>إجمالي الفواتير</span><b>${money(ti)}</b></div><div class="rowline"><span>إجمالي المدفوع</span><b>${money(tp)}</b></div><div class="rowline"><span>المتأخرات الحالية</span><b class="${Number(s.arrears)>0?'dangerText':''}">${money(s.arrears)}</b></div><div class="rowline"><span>الرصيد الدائن</span><b>${money(s.credit)}</b></div><div class="actions no-print"><button class="green" onclick="printStatement('${id}')">🖨️ طباعة كشف الحساب</button><button class="gray" onclick="waStatement('${id}')">واتساب</button><button class="gray" onclick="go('subInvoices')">↩ العودة</button></div></div></div>`}
+function showStatement(id){$('result').innerHTML=statementHTML(id);go('read')}
+function printStatement(id){$('result').innerHTML=statementHTML(id);setPaperSize(db.settings.paperSize||'80');window.print()}
+function waStatement(id){let s=sub(id);if(!s)return;let ti=db.invoices.filter(i=>i.subId===id).reduce((a,x)=>a+Number(x.total||0),0),tp=db.receipts.filter(r=>r.subId===id).reduce((a,x)=>a+Number(x.paid||0),0);let t=`${db.settings.name}\n📄 *كشف حساب المشترك*\nالمشترك: *${s.name}*\nالعداد: ${s.meter}\nالهاتف: ${s.phone}\n\nإجمالي الفواتير: ${money(ti)}\nإجمالي المدفوع: ${money(tp)}\nالمتأخرات الحالية: ${money(s.arrears)}\nالرصيد الدائن: ${money(s.credit)}`;waOpen(s.phone,t)}
+function fillSelect(){if(!$('isub'))return;$('isub').innerHTML=db.subs.map(s=>`<option value="${s.id}">${esc(s.name)} — ${esc(s.meter)}</option>`).join('');if(db.subs.length)fillInv()}
+function makeInv(i){go('invoiceForm');$('isub').value=i;fillInv()}
+function fillInv(){let s=sub($('isub').value);if(!s)return;$('ivprev').textContent=s.prev;$('ivprice').textContent=money(s.price);$('ivdue').textContent=money(s.arrears);$('ivcredit').textContent=money(s.credit);$('icurr').value=s.prev;$('idis').value=0;$('ipaid').value=0;calcInv()}
+function calcInv(){let s=sub($('isub').value);if(!s)return;let cur=Number($('icurr').value||s.prev),c=Math.max(0,cur-s.prev),energy=c*s.price,dis=Math.max(0,Number($('idis').value||0)),gross=Math.max(0,energy-dis)+Number(s.arrears||0),cu=Math.min(Number(s.credit||0),gross),total=Math.max(0,gross-cu),paid=Math.max(0,Number($('ipaid').value||0)),rem=Math.max(0,total-paid),over=Math.max(0,paid-total);$('icons').textContent=c+' kWh';$('ienergy').textContent=money(energy);$('itotal').textContent=money(total);$('icuse').textContent=money(cu);$('ires').innerHTML=rem?`المتبقي: <b>${money(rem)}</b>`:`تم السداد. الرصيد الزائد: <b>${money(over)}</b>`}
+function saveInv(){let s=sub($('isub').value);if(!s)return;let cur=Number($('icurr').value||s.prev),c=Math.max(0,cur-s.prev),energy=c*s.price,dis=Math.max(0,Number($('idis').value||0)),oldDue=Number(s.arrears||0),gross=Math.max(0,energy-dis)+oldDue,cu=Math.min(Number(s.credit||0),gross),total=Math.max(0,gross-cu),paid=Math.max(0,Number($('ipaid').value||0)),rem=Math.max(0,total-paid),over=Math.max(0,paid-total);s.credit=Math.max(0,Number(s.credit||0)-cu)+over;s.arrears=rem;s.prev=cur;let i={id:sid(),number:db.settings.nextInvoice++,phone:s.phone,subId:s.id,name:s.name,meter:s.meter,date:new Date().toISOString(),prev:cur-c,curr:cur,cons:c,price:s.price,energy,discount:dis,oldArrears:oldDue,creditUsed:cu,total,paid,remaining:rem,over};db.invoices.push(i);save();showInv(i);render()}
+function invHTML(i){let logo=db.settings.logo||'';return `<div class="print-sheet invoice-card"><div class="invoice-content">${logo?`<img class="invoice-logo" src="${logo}" alt="شعار المحطة">`:''}<div class="doc-head"><div><h2>${esc(db.settings.name)}</h2><div class="doc-subtitle">للطاقة النظيفة — فاتورة كهرباء</div></div><div class="doc-number">فاتورة #${i.number}</div></div><div class="doc-meta"><div><span>المشترك</span><b>${esc(i.name)}</b></div><div><span>رقم العداد</span><b>${esc(i.meter)}</b></div><div><span>تاريخ الإصدار</span><b>${formatDateDMY(i.date)}</b></div><div><span>تاريخ الاستحقاق</span><b>${invoiceDueDate(i)}</b></div></div><div class="watermark-wrap">${logo?`<img class="watermark" src="${logo}" alt="">`:''}</div><table class="doc-table"><thead><tr><th>البيان</th><th>القراءة/القيمة</th></tr></thead><tbody><tr><td>القراءة السابقة</td><td>${i.prev}</td></tr><tr><td>القراءة الحالية</td><td>${i.curr}</td></tr><tr><td>الاستهلاك</td><td>${i.cons} كيلو</td></tr><tr><td>سعر الكيلو</td><td>${money(i.price)}</td></tr><tr><td>قيمة الاستهلاك</td><td>${money(i.energy)}</td></tr><tr><td>المتأخرات السابقة</td><td>${money(i.oldArrears)}</td></tr><tr><td>الخصم</td><td>${money(i.discount)}</td></tr><tr><td>الرصيد المستخدم</td><td>${money(i.creditUsed)}</td></tr></tbody></table><div class="totals"><div><span>الإجمالي</span><b>${money(i.total)}</b></div><div><span>المدفوع</span><b class="paid">${money(i.paid)}</b></div><div><span>المتبقي</span><b class="${Number(i.remaining||0)>0?'due':''}">${money(i.remaining)}</b></div><div><span>الرصيد الزائد</span><b>${money(i.over)}</b></div></div><div class="doc-footer">شكراً لكم — ${esc(db.settings.name)}</div><div class="actions no-print"><button class="primary" onclick="printInv(${i.number})">🖨️ طباعة الفاتورة</button><button class="green" onclick="waInv(${i.number})">واتساب</button><button class="gray" onclick="go('invoices')">↩ رجوع</button></div></div></div>`}
+function showInv(i){$('result').innerHTML=invHTML(i);go('read')}
+function renderInvs(){let q=($('iq')?.value||'').toLowerCase(),a=db.invoices.filter(i=>(i.name+' '+i.meter+' '+i.number).toLowerCase().includes(q)).slice().reverse();$('invList').innerHTML=a.length?a.map(i=>`<div class="row"><b>فاتورة #${i.number} — ${esc(i.name)}</b><div class="muted">${i.date}</div><div class="rowline">الإجمالي <b>${money(i.total)}</b></div><div class="invoice-status ${Number(i.remaining||0)>0?(Number(i.paid||0)>0?'status-partial':'status-overdue'):'status-paid'}"><span class="status-badge">${Number(i.remaining||0)>0?(Number(i.paid||0)>0?'🟠 مدفوعة جزئياً':'🔴 غير مدفوعة'):'🟢 مدفوعة بالكامل'}</span> <b class="${Number(i.remaining||0)>0?'amount-overdue':'amount-paid'}">المتبقي: ${money(i.remaining)}</b></div><button class="primary" onclick="showInv(db.invoices.find(x=>x.number==${i.number}))">عرض</button><button class="green" onclick="printInv(${i.number})">طباعة</button><button class="gray" onclick="waInv(${i.number})">واتساب</button></div>`).join(''):'<div class="card">لا توجد فواتير.</div>'}
+function receipt(i){let s=sub(i),a=prompt(`المتأخرات الحالية: ${money(s.arrears)}\nأدخل المبلغ المدفوع:`);if(a===null)return;a=Number(a||0);if(a<=0)return;let before=Number(s.arrears||0),after=Math.max(0,before-a),over=Math.max(0,a-before);s.arrears=after;s.credit=Number(s.credit||0)+over;let r={id:sid(),number:db.settings.nextReceipt++,phone:s.phone,subId:s.id,name:s.name,meter:s.meter,date:new Date().toISOString(),before,paid:a,after,over};db.receipts.push(r);save();showRec(r);render()}
+function newReceipt(){if(!db.subs.length)return alert('أضف مشتركًا أولاً');let q=prompt('أدخل اسم المشترك أو رقم العداد:');let s=db.subs.find(x=>x.name===q||x.meter===q);if(s)receipt(s.id);else alert('المشترك غير موجود')}
+function recHTML(r){let logo=db.settings.logo||'';return `<div class="print-sheet receipt-card"><div class="invoice-content">${logo?`<img class="invoice-logo" src="${logo}" alt="شعار المحطة">`:''}<div class="doc-head"><div><h2>${esc(db.settings.name)}</h2><div class="doc-subtitle">للطاقة النظيفة — إيصال قبض</div></div><div class="doc-number">إيصال #${r.number}</div></div><div class="doc-meta"><div><span>المشترك</span><b>${esc(r.name)}</b></div><div><span>رقم العداد</span><b>${esc(r.meter)}</b></div><div><span>تاريخ الدفع</span><b>${formatDateDMY(r.date)}</b></div><div><span>الهاتف</span><b>${esc(r.phone||sub(r.subId)?.phone||'—')}</b></div></div><div class="watermark-wrap">${logo?`<img class="watermark" src="${logo}" alt="">`:''}</div><div class="receipt-total"><span>المبلغ المدفوع</span><strong>${money(r.paid)}</strong></div><table class="doc-table"><tbody><tr><td>المتأخرات قبل الدفع</td><td>${money(r.before)}</td></tr><tr><td>المبلغ المدفوع</td><td>${money(r.paid)}</td></tr><tr><td>المتبقي</td><td>${money(r.after)}</td></tr><tr><td>الرصيد الزائد</td><td>${money(r.over)}</td></tr></tbody></table><div class="payment-status ${Number(r.after||0)<=0?'ok':''}">${Number(r.after||0)<=0?'✓ تم سداد المتأخرات بالكامل':'دفعة جزئية — المتبقي '+money(r.after)}</div><div class="doc-footer">شكراً لكم — ${esc(db.settings.name)}</div><div class="actions no-print"><button class="primary" onclick="printRec(${r.number})">🖨️ طباعة الإيصال</button><button class="green" onclick="waRec(${r.number})">واتساب</button><button class="gray" onclick="go('receipts')">↩ رجوع</button></div></div></div>`}
+function showRec(r){$('result').innerHTML=recHTML(r);go('read')}
+function renderRecs(){let q=($('rq')?.value||'').toLowerCase(),a=db.receipts.filter(r=>(r.name+' '+r.meter+' '+r.number).toLowerCase().includes(q)).slice().reverse();$('recList').innerHTML=a.length?a.map(r=>`<div class="row"><b>إيصال #${r.number} — ${esc(r.name)}</b><div class="muted">${r.date}</div><div class="rowline">المدفوع <b>${money(r.paid)}</b></div><button class="primary" onclick="showRec(db.receipts.find(x=>x.number==${r.number}))">عرض</button><button class="green" onclick="printRec(${r.number})">طباعة</button><button class="gray" onclick="waRec(${r.number})">واتساب</button></div>`).join(''):'<div class="card">لا توجد إيصالات.</div>'}
+function setPaperSize(size){
+  db.settings.paperSize=String(size||'80');save();
+  let style=document.getElementById('dynamic-paper-style');
+  if(!style){style=document.createElement('style');style.id='dynamic-paper-style';document.head.appendChild(style)}
+  let mm=db.settings.paperSize==='58'?58:80, content=db.settings.paperSize==='58'?50:72;
+  style.textContent=`@page{size:${mm}mm auto;margin:2mm}@media print{html,body{width:${mm}mm!important}.card,.invoice-card,.receipt-card{width:${content}mm!important;max-width:${content}mm!important}.invoice-card .watermark,.receipt-card .watermark{width:${db.settings.paperSize==='58'?36:48}mm!important;height:${db.settings.paperSize==='58'?36:48}mm!important}}`;
+}
+function printInv(n){let i=db.invoices.find(x=>x.number==n);if(!i)return;let old=document.title;document.title='فاتورة-'+i.number;setPaperSize(db.settings.paperSize||'80');window.print();document.title=old}function printRec(n){setPaperSize(db.settings.paperSize||'80');$('result').innerHTML=recHTML(db.receipts.find(x=>x.number==n));window.print()}
+function waNumber(p){
+  let raw=String(p??'').trim();
+  let n=raw.replace(/[^\d]/g,'');
+  if(n.startsWith('00967')) n=n.slice(2);
+  if(n.startsWith('967')) return n;
+  if(n.startsWith('0') && n.length===10) return '967'+n.slice(1);
+  if(/^7\d{8}$/.test(n)) return '967'+n;
+  return n;
+}
+function waOpen(phone,text){
+  let n=waNumber(phone);
+  if(!n || n.length<9)return alert('رقم واتساب للمشترك غير صحيح أو غير مسجل');
+  let msg=encodeURIComponent(text);
+  let url='https://wa.me/'+n+'?text='+msg;
+  let intent='intent://send?phone='+n+'&text='+msg+'#Intent;scheme=whatsapp;package=com.whatsapp;end';
+  try{ window.open(intent,'_blank'); setTimeout(()=>{try{window.open(url,'_blank')}catch(e){location.href=url}},500); }
+  catch(e){ location.href=url; }
+}
+function formatDateDMY(value){
+  let d=value instanceof Date?value:new Date(value);
+  if(isNaN(d))return '';
+  return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();
+}
+function invoiceDueDate(i){
+  let d=new Date(i.date);
+  if(isNaN(d))d=new Date();
+  d.setDate(d.getDate()+Number(db.settings.dueDays??15));
+  return formatDateDMY(d);
+}
+function paymentStatus(i){
+  if(Number(i.remaining||0)<=0)return 'مدفوعة بالكامل';
+  if(Number(i.paid||0)>0)return 'مدفوعة جزئياً';
+  return 'غير مدفوعة';
+}
+function waInvoiceText(i){
+  let s=sub(i.subId), phone=s?.phone||i.phone||'';
+  let status=paymentStatus(i);
+  return `⚡ *إيصال فاتورة كهرباء* ⚡
+
+👤 *اسم المشترك:* ${i.name}
+📱 *رقم الهاتف:* ${phone}
+📄 *رقم الفاتورة:* #${i.number}
+
+📊 *القراءة السابقة:* ${i.prev} كيلو
+📈 *القراءة الحالية:* ${i.curr} كيلو
+⚡ *الاستهلاك:* ${i.cons} كيلو
+
+💰 *قيمة الاستهلاك:* ${money(i.energy)}
+📛 *المتأخرات السابقة:* ${money(i.oldArrears)}
+💵 *المبلغ الإجمالي:* ${money(i.total)} يمني
+✅ *المدفوع:* ${money(i.paid)}
+🔻 *المتبقي عليك:* ${money(i.remaining)}
+🗓️ *تاريخ الإصدار:* ${formatDateDMY(i.date)}
+📅 *تاريخ الاستحقاق:* ${invoiceDueDate(i)}
+📌 *حالة السداد:* ${status}
+
+شكراً لكم - نظام فواتير ${db.settings.name}`;
+}
+function waReceiptText(r){
+  let s=sub(r.subId), phone=s?.phone||r.phone||'';
+  let status=Number(r.after||0)<=0?'مدفوع بالكامل':'مدفوع جزئياً';
+  return `⚡ *إيصال قبض كهرباء* ⚡
+
+👤 *اسم المشترك:* ${r.name}
+📱 *رقم الهاتف:* ${phone}
+📄 *رقم الإيصال:* #${r.number}
+
+💵 *المبلغ المدفوع:* ${money(r.paid)}
+📛 *المتأخرات قبل الدفع:* ${money(r.before)}
+🔻 *المتبقي عليك:* ${money(r.after)}
+💳 *الرصيد الزائد:* ${money(r.over)}
+🗓️ *تاريخ الدفع:* ${formatDateDMY(r.date)}
+📌 *حالة السداد:* ${status}
+
+شكراً لكم - نظام فواتير ${db.settings.name}`;
+}
+function waInv(n){let i=db.invoices.find(x=>x.number==n);if(!i)return;waOpen((sub(i.subId)?.phone||i.phone||''),waInvoiceText(i))}
+function waRec(n){let r=db.receipts.find(x=>x.number==n);if(!r)return;waOpen((sub(r.subId)?.phone||r.phone||''),waReceiptText(r))}
+function reports(){let ti=db.invoices.reduce((a,x)=>a+x.total,0),tp=db.receipts.reduce((a,x)=>a+x.paid,0),td=db.subs.reduce((a,x)=>a+x.arrears,0),tc=db.subs.reduce((a,x)=>a+x.credit,0);$('rtInv').textContent=money(ti);$('rtPaid').textContent=money(tp);$('rtDue').textContent=money(td);$('rtCredit').textContent=money(tc)}
+
+function loadSettings(){
+  $('stName').value=db.settings.name||'محطة العسل للطاقة النظيفة';
+  $('stPrice').value=db.settings.price||170;
+  $('stStart').value=db.settings.start||1;
+  $('stDueDays').value=db.settings.dueDays??15;
+  if($('paperSize')){$('paperSize').value=db.settings.paperSize||'80';setPaperSize(db.settings.paperSize||'80')}
+  if($('backupPath'))$('backupPath').value='حفظ تلقائي داخل التطبيق';
+  if($('readingDate'))$('readingDate').value=db.settings.readingDate||'';
+  if($('readingTime'))$('readingTime').value=db.settings.readingTime||'09:00';
+  if($('backupStatus'))$('backupStatus').textContent=localStorage.getItem('honey_backup_last_date')?'آخر نسخة: '+localStorage.getItem('honey_backup_last_date'):'النسخ الاحتياطي التلقائي مفعل.';
+  if($('logoStatus'))$('logoStatus').textContent=db.settings.logo?'تم حفظ الشعار وسيظهر بشكل شفاف في الفاتورة والإيصال.':'لم يتم رفع شعار بعد.';
+  if($('reminderStatus'))$('reminderStatus').textContent=db.settings.readingDate?'التذكير مضبوط على '+db.settings.readingDate+' '+(db.settings.readingTime||'09:00'):'لا يوجد منبه محفوظ.';
+}
+function saveSettings(){
+  db.settings.name=$('stName').value.trim()||'محطة العسل للطاقة النظيفة';
+  db.settings.price=Number($('stPrice').value||170);db.settings.start=Number($('stStart').value||1);db.settings.dueDays=Number($('stDueDays').value||15);
+  save();scheduleReminder();render();alert('تم حفظ الإعدادات')
+}
+function saveReminder(){db.settings.readingDate=$('readingDate').value;db.settings.readingTime=$('readingTime').value||'09:00';save();scheduleReminder();if($('reminderStatus'))$('reminderStatus').textContent=db.settings.readingDate?'التذكير مضبوط على '+db.settings.readingDate+' '+db.settings.readingTime:'لا يوجد منبه محفوظ.';alert('تم حفظ موعد القراءة')}
+function scheduleReminder(){if(reminderTimer)clearTimeout(reminderTimer);let d=db.settings.readingDate,t=db.settings.readingTime||'09:00';if(!d)return;let when=new Date(d+'T'+t+':00').getTime(),delay=when-Date.now();if(delay<=0)return;reminderTimer=setTimeout(()=>{let msg='حان وقت أخذ القراءة الحالية للمشتركين';if('Notification' in window&&Notification.permission==='granted')new Notification('محطة العسل',{body:msg});else alert('🔔 '+msg)},Math.min(delay,2147483647))}
+function uploadLogo(e){let f=e.target.files?.[0];if(!f)return;let r=new FileReader();r.onload=()=>{db.settings.logo=r.result;save();if($('logoStatus'))$('logoStatus').textContent='تم حفظ الشعار وسيظهر بشكل شفاف في الفاتورة والإيصال.';render()};r.readAsDataURL(f)}
+function removeLogo(){delete db.settings.logo;save();if($('logoStatus'))$('logoStatus').textContent='تم حذف الشعار.';render()}
+function backupData(){return JSON.stringify(db,null,2)}
+function todayKey(){let d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function downloadBackup(){let b=new Blob([backupData()],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='honey-billing-backup-'+todayKey()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);localStorage.setItem('honey_backup_last_date',todayKey());updateBackupStatus('تم تنزيل نسخة احتياطية: '+todayKey())}
+function backup(auto=false){
+  if(window.AndroidBridge){try{AndroidBridge.saveData(backupData());AndroidBridge.runBackupNow();localStorage.setItem('honey_backup_last_date',todayKey());updateBackupStatus('تم حفظ النسخة الاحتياطية داخل الجهاز: '+todayKey());return}catch(e){}}
+  if(!auto)downloadBackup();
+}
+function chooseBackupFolder(){alert('في نسخة Android يتم حفظ النسخ اليومية تلقائياً داخل مجلد نسخ احتياطي خاص بالتطبيق. يمكنك استخدام زر "أخذ نسخة الآن" لتنزيل ملف JSON أيضاً.')}
+function updateBackupStatus(t){if($('backupStatus'))$('backupStatus').textContent=t}
+function restoreDB(e){let f=e.target.files?.[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.subs||!x.invoices||!x.receipts)throw 0;db=x;save();render();alert('تمت الاستعادة بنجاح')}catch(_){alert('النسخة غير صالحة')}};r.readAsText(f)}
+window.addEventListener('load',()=>{render();scheduleReminder();if(window.AndroidBridge){try{AndroidBridge.saveData(backupData());AndroidBridge.scheduleDailyBackup()}catch(e){}}else if(!localStorage.getItem('honey_backup_last_date'))backup(false)})
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){scheduleReminder();if(window.AndroidBridge)try{AndroidBridge.saveData(backupData())}catch(e){}}})
+</script></body></html>
